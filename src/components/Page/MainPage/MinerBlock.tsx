@@ -52,12 +52,23 @@ const BuyMiners = styled.img`
     height: 60px;
 `
 
-const LineReward = styled.div`
+const TimeBlock = styled.div`
     width: 90%;
     height: 5px;
     border-radius: 50px;
     background: #474747;
     margin-top: 30px;
+`
+
+const BlockTimeAnimation = styled.div`
+    width: 75%; // место куда вставлять значение 
+    height: 100%;
+    border-radius: 50px;
+    background: #db9648;
+    /* background: linear-gradient(to right, #db9648 50%, transparent 50%);
+    background-position: left right;
+    background-size: 200% 100%;
+    transition: all 10s ease-in-out; */
 `
 
 const RewardTime = styled.a`
@@ -66,6 +77,7 @@ const RewardTime = styled.a`
     font-weight: 400;
     margin-top: 20px;
 `
+
 
 
 export const MinerBlock = () => {
@@ -94,7 +106,9 @@ export const MinerBlock = () => {
                         <BuyMiners loading="lazy" src={BuyMoreMiners}/>
                     </a>
                 </ASICContainer>
-                <LineReward />
+                <TimeBlock>
+                        <BlockTimeAnimation />
+                </TimeBlock>
                 {miner_info.battery_amount == 0 && miner_info.miners_amount != 0 
                 ? 
                     <RewardTime style={{color: "#ef5b5b"}}>{miner_info.battery_amount} Batteries on balance ({miner_info.battery_amount} day)</RewardTime> 
