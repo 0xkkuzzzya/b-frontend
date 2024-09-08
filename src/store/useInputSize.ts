@@ -6,10 +6,10 @@ export const defaultSize: InputSize = { size: 50, width: 30 };
 export const getInputSize = (value: string, parent: HTMLLabelElement) => {
     const max = parent.clientWidth;
     let size = defaultSize.size;
-    let width = getTextWidth(value, `400 ${size}px 'Public Sans'`);
+    let width = getTextWidth(value, `500 ${size}px 'Public Sans'`);
     while (Math.round(width) > max - 135) {
         size = Math.max(1, size - 1);
-        width = getTextWidth(value, `400 ${size}px 'Public Sans'`);
+        width = getTextWidth(value, `500 ${size}px 'Public Sans'`);
     }
 
     return {

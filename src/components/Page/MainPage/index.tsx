@@ -29,13 +29,13 @@ const MainText = styled.a`
 
 const Amount = styled.a`
     color: #fff;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 30px;
 `
 
 const AmountDescription = styled.a`
     color: #adabac;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 14px;
 `
 
@@ -70,11 +70,11 @@ export const MainPage = () => {
                         <MainText>Bytecoin</MainText>
                         <Amount>{miner_info.bytecoins_amount < 1000 ? toFixed(miner_info.bytecoins_amount, 3) : formatCash(miner_info.bytecoins_amount)} BYTE</Amount>
                         {protocol_info.epoch == 0 || protocol_info.miners_nft_count == 0 || miner_info.battery_amount == 0 || miner_info.miners_amount == 0 ?
-                            <> <AmountDescription> 0 Mined today • {miner_info.miners_amount} NFT ASIC</AmountDescription> </> :
+                            <> <AmountDescription> 0 Mined today • {miner_info.miners_amount} NFT Miner</AmountDescription> </> :
                             <AmountDescription>
                                 {
                                     isNaN(mined_value) ? 0 : formatCash(mined_value)
-                                } Mined today • {miner_info.miners_amount} NFT ASIC
+                                } Mined today • {miner_info.miners_amount} NFT Miner
                             </AmountDescription>
                         }
                     </MainInfoBlock>

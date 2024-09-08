@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import DepositMiner from '../../../assets/DepositMiner.webp'
-import BuyBattery from '../../../assets/BuyBattery.webp'
-import Withdraw from '../../../assets/Withdraw.webp'
+import DepositMiner from '../../../assets/Deposit.svg'
+import BuyBattery from '../../../assets/BuyEnergy.svg'
+import Withdraw from '../../../assets/Withdraw.svg'
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -19,7 +19,6 @@ const Logo = styled.img`
 `
 
 const LinkContainer = styled.div`
-    width: 85px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,9 +27,8 @@ const LinkContainer = styled.div`
 const LinkText = styled.a`
     color: #fff;
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 500;
     white-space: nowrap;
-    margin-top: 10px;
 `
 
 const Links = styled(Link)`
@@ -40,26 +38,43 @@ const Links = styled(Link)`
     text-decoration: none;
 `
 
+const Imgblock = styled.div`
+    width: 100px;
+    height: 70px;
+    background-color: #222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`
+
 
 export const NavigationBlock = () => {
     return (
         <Container>
             <LinkContainer>
                 <Links to="/depositminer">
-                    <Logo loading="lazy" src={DepositMiner} />
-                    <LinkText>Deposit Miner</LinkText>
+                    <Imgblock>
+                        <Logo loading="lazy" src={DepositMiner} />
+                        <LinkText>Deposit Miner</LinkText>
+                    </Imgblock>
                 </Links>
             </LinkContainer>
             <LinkContainer>
                 <Links to="/buybattery">
-                    <Logo loading="lazy" src={BuyBattery} />
-                    <LinkText>Buy battery</LinkText>
+                    <Imgblock>  
+                        <Logo loading="lazy" src={BuyBattery} />
+                        <LinkText>Buy battery</LinkText>
+                    </Imgblock>
                 </Links>
             </LinkContainer>
             <LinkContainer>
                 <Links to="/withdraw">
-                    <Logo loading="lazy" src={Withdraw} />
-                    <LinkText>Withdraw</LinkText>
+                    <Imgblock>
+                         <Logo loading="lazy" src={Withdraw} />
+                        <LinkText>Withdraw</LinkText>
+                    </Imgblock>
                 </Links>
             </LinkContainer>
         </Container>

@@ -53,7 +53,7 @@ const Input = styled.input <{ anim: string }>`
     min-width: 32px;
     height: 60px;
     font-size: 50px;
-    font-weight: 400;
+    font-weight: 500;
     color: #fff;
     background: transparent;
     padding: 0;
@@ -132,7 +132,7 @@ const ActiveConfirm = styled.button`
     border-radius: 10px;
     background-color: #0098EA;
     color: #fff;
-    font-weight: 400;
+    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;

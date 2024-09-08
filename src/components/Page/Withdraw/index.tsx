@@ -84,7 +84,7 @@ export const Withdraw = () => {
                 <WithdrawContainer>
                     <Logo src={Laptop} />
                     <WithdrawNameContainer>
-                        <WithdrawName>NFT ASIC</WithdrawName>
+                        <WithdrawName>NFT Miner</WithdrawName>
                         <Amount>{miner_info.miners_amount} NFT</Amount>
                     </WithdrawNameContainer>
                 </WithdrawContainer>

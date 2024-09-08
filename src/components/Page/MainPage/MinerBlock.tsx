@@ -24,7 +24,7 @@ const MyMinerContainer = styled.div`
 const GreyText = styled.a`
     color: #adabac;
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 500;
 `
 
 const AmountASIC = styled.a`
@@ -74,7 +74,7 @@ const BlockTimeAnimation = styled.div`
 const RewardTime = styled.a`
     color: #fff;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 500;
     margin-top: 20px;
 `
 
@@ -94,7 +94,7 @@ export const MinerBlock = () => {
                     <AmountInfo>
                         <GreyText>My Miners</GreyText>
                         {
-                            miner_info.battery_amount > 0 && miner_info.nfts.length == 0 ? <AmountASIC style={{color: "#ef5b5b"}}> {miner_info.miners_amount} ASIC </AmountASIC> : <AmountASIC>{miner_info.miners_amount} ASIC</AmountASIC>
+                            miner_info.battery_amount > 0 && miner_info.nfts.length == 0 ? <AmountASIC style={{color: "#ef5b5b"}}> {miner_info.miners_amount} ASIC </AmountASIC> : <AmountASIC>{miner_info.miners_amount} Miner</AmountASIC>
                         }
                         { protocol_info.epoch == 0 || protocol_info.miners_nft_count == 0 || miner_info.battery_amount == 0 || miner_info.miners_amount == 0 ? <GreyText>0 BYTE per 1 day</GreyText> :
                             <GreyText>{

@@ -51,7 +51,7 @@ const Input = styled.input <{ anim: string }>`
     min-width: 32px;
     height: 60px;
     font-size: 50px;
-    font-weight: 400;
+    font-weight: 500;
     color: #fff;
     background: transparent;
     padding: 0;
