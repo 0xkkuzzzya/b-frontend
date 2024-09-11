@@ -9,8 +9,9 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
     margin-top: 40px;
+    background: #222;
+    border-radius: 15px;
 `
 
 const Logo = styled.img`
@@ -41,8 +42,6 @@ const Links = styled(Link)`
 const Imgblock = styled.div`
     width: 100px;
     height: 70px;
-    background-color: #222;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,7 +52,7 @@ const Imgblock = styled.div`
 export const NavigationBlock = () => {
     return (
         <Container>
-            <LinkContainer>
+            <LinkContainer style={{borderRight: '1px solid #111'}}>
                 <Links to="/depositminer">
                     <Imgblock>
                         <Logo loading="lazy" src={DepositMiner} />
@@ -69,7 +68,7 @@ export const NavigationBlock = () => {
                     </Imgblock>
                 </Links>
             </LinkContainer>
-            <LinkContainer>
+            <LinkContainer style={{borderLeft: '1px solid #111'}}>
                 <Links to="/withdraw">
                     <Imgblock>
                          <Logo loading="lazy" src={Withdraw} />
