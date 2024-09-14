@@ -46,6 +46,10 @@ const Imgblock = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    transition: transform .1s ease-in-out;
+    &:active {
+         transform: scale(0.90);
+    }
 `
 
 

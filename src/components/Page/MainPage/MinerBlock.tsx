@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import BuyMoreMiners from '../../../assets/BuyMoreMiners.webp'
 import { useMinersInfo, useProtocolInfo } from "../../../store/useProtocol";
 import { useState } from "react";
 import { formatCash } from "../../../utils/utils";
+import GetMoreMinersLogo from '../../../assets/GetMoreMinersLogo.webp'
 
 const MainMinerContainer = styled.div`
     width: 100%;
@@ -47,11 +47,6 @@ const AmountInfo = styled.div`
     gap: 7px;
 `
 
-const BuyMiners = styled.img`
-    width: 130px;
-    height: 60px;
-`
-
 const TimeBlock = styled.div`
     width: 90%;
     height: 5px;
@@ -78,6 +73,29 @@ const RewardTime = styled.a`
     margin-top: 20px;
 `
 
+const GetMinerButton = styled.div`
+    width: 130px;
+    height: 60px;
+    background: #0796ea;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+const GetMinerText = styled.a`
+    color: #fff;
+    font-weight: 500;
+    font-size: 15px;
+`
+
+const GetMinersLogo = styled.img`
+    width: 25px;
+    height: 25px;
+    margin-right: 7px;
+    margin-left: 15px;
+`
+
 
 
 export const MinerBlock = () => {
@@ -102,11 +120,15 @@ export const MinerBlock = () => {
                             } BYTE per 1 day</GreyText>
                         }
                     </AmountInfo>
-                    <a href="https://testnet.getgems.io/collection/EQD9P8RuqjJmLVDwen_tKSgeW5VuNXndmRfgUdzRF8oIMW5y">
-                        <BuyMiners loading="lazy" src={BuyMoreMiners}/>
+                    <a href="https://testnet.getgems.io/collection/EQD9P8RuqjJmLVDwen_tKSgeW5VuNXndmRfgUdzRF8oIMW5y"
+                    style={{textDecoration: "none"}}>
+                        <GetMinerButton>
+                            <GetMinersLogo src={GetMoreMinersLogo}/>
+                            <GetMinerText>Get more miners</GetMinerText>
+                        </GetMinerButton>
                     </a>
                 </ASICContainer>
-                <TimeBlock>
+                <TimeBlock> 
                         <BlockTimeAnimation />
                 </TimeBlock>
                 {miner_info.battery_amount == 0 && miner_info.miners_amount != 0 
