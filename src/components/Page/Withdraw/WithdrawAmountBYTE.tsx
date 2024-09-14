@@ -206,7 +206,7 @@ export const WithdrawAmountBYTE = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.replace(/\s/g, '');
 
-        if (value.length <= 4) {
+        if (value.length <= 9) {
             if (value == '0' && amount != '0') {
                 setAmount(value);
             } else if (value != '0' && !value.startsWith('0')) {
@@ -219,7 +219,7 @@ export const WithdrawAmountBYTE = () => {
     const handleChangeError = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.replace(/\s/g, '');
 
-        if (value.length <= 4) {
+        if (value.length <= 9) {
             if (value == '0' && amount != '0') {
                 setAmount(value);
             } else if (value != '0' && !value.startsWith('0')) {
