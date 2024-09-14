@@ -195,6 +195,31 @@ export const WithdrawAmountNFT = () => {
         
     }, [refBlock.current, amount]);
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value.replace(/\s/g, '');
+
+        if (value.length <= 4) {
+            if (value == '0' && amount != '0') {
+                setAmount(value);
+            } else if (value != '0' && !value.startsWith('0')) {
+                const formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+                setAmount(formattedValue);
+            }
+        }
+    };
+
+    const handleChangeError = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value.replace(/\s/g, '');
+
+        if (value.length <= 4) {
+            if (value == '0' && amount != '0') {
+                setAmount(value);
+            } else if (value != '0' && !value.startsWith('0')) {
+                setAmount(value);
+            }
+        }
+    };
+
     return (
         <>
             <Container>
@@ -210,7 +235,7 @@ export const WithdrawAmountNFT = () => {
                                     <Input
                                         value={amount}
                                         style={{ width: `${fontSize.width}px`, color: "#ef5b5b" }}
-                                        onChange={(e) => setAmount(e.target.value)}
+                                        onChange={handleChangeError}
                                         inputMode='numeric'
                                         pattern="[0-9]*"
                                         placeholder="0"
@@ -220,7 +245,15 @@ export const WithdrawAmountNFT = () => {
                                 </>
                                 :
                                 <>
-                                    <Input value={amount} style={{ width: `${fontSize.width}px` }} onChange={(e) => setAmount(e.target.value)} inputMode='numeric' pattern="[0-9]*" placeholder="0" anim=""></Input>
+                                    <Input 
+                                    value={amount} 
+                                    style={{ width: `${fontSize.width}px` }} 
+                                    onChange={handleChange} 
+                                    inputMode='numeric' 
+                                    pattern="[0-9]*" 
+                                    placeholder="0" 
+                                    anim=""
+                                    ></Input>
                                     <WithdrawNameToken>NFT</WithdrawNameToken>
                                 </>
                             }

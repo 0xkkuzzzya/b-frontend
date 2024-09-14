@@ -30,7 +30,7 @@ const ReturnButton = styled.button`
     border-radius: 10px;
     background-color: #0098EA;
     color: #fff;
-    font-weight: 400;
+    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;

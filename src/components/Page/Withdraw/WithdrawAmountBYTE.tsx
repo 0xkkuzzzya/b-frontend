@@ -203,6 +203,31 @@ export const WithdrawAmountBYTE = () => {
         
     }, [refBlock.current, amount]);
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value.replace(/\s/g, '');
+
+        if (value.length <= 4) {
+            if (value == '0' && amount != '0') {
+                setAmount(value);
+            } else if (value != '0' && !value.startsWith('0')) {
+                const formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+                setAmount(formattedValue);
+            }
+        }
+    };
+
+    const handleChangeError = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value.replace(/\s/g, '');
+
+        if (value.length <= 4) {
+            if (value == '0' && amount != '0') {
+                setAmount(value);
+            } else if (value != '0' && !value.startsWith('0')) {
+                setAmount(value);
+            }
+        }
+    };
+
 
     return (
         <>
@@ -216,10 +241,10 @@ export const WithdrawAmountBYTE = () => {
                         <InputContainer ref={refBlock}>
                             {Number(amount) > miner_info.bytecoins_amount
                                 ?
-                                <> <Input value={amount} style={{ width: `${fontSize.width}px`, color: "#ef5b5b" }} onChange={(e) => setAmount(e.target.value)} inputMode='decimal' placeholder="0" anim="shake 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) both" ></Input>
+                                <> <Input value={amount} style={{ width: `${fontSize.width}px`, color: "#ef5b5b" }} onChange={handleChangeError} inputMode='decimal' placeholder="0" anim="shake 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) both" ></Input>
                                     <WithdrawNameTokenError>BYTE</WithdrawNameTokenError> </>
                                 :
-                                <> <Input value={amount} style={{ width: `${fontSize.width}px` }} onChange={(e) => setAmount(e.target.value)} inputMode='decimal' placeholder="0" anim=""></Input>
+                                <> <Input value={amount} style={{ width: `${fontSize.width}px` }} onChange={handleChange} inputMode='decimal' placeholder="0" anim=""></Input>
                                     <WithdrawNameToken>BYTE</WithdrawNameToken> </>
                             }
                         </InputContainer>

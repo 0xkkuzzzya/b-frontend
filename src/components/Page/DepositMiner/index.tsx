@@ -55,7 +55,7 @@ const Input = styled.input <{ anim: string }>`
     color: #fff;
     background: transparent;
     padding: 0;
-    animation: ${(props: { anim: any; }) => props .anim};
+    animation: ${(props: { anim: any; }) => props.anim};
     @keyframes shake {
         10%, 90% {
             transform: translateX(-0.5px);
@@ -132,7 +132,7 @@ const ActiveConfirm = styled.button`
     border-radius: 10px;
     background-color: #0098EA;
     color: #fff;
-    font-weight: 400;
+    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,10 +157,10 @@ const BytecoinApiURL = 'https://b-api-theta.vercel.app/api/api/v1'
 
 export const DepositMiner = () => {
     const userFriendlyAddress = useTonAddress();
-    const [ amount, setAmount] = useState('');
+    const [amount, setAmount] = useState('');
     const navigate = useNavigate();
-    const [ miner_info, setMinerInfo ] = useMinersInfo();
-    const [ tonConnectUI, setOptions] = useTonConnectUI();
+    const [miner_info, setMinerInfo] = useMinersInfo();
+    const [tonConnectUI, setOptions] = useTonConnectUI();
 
     useEffect(() => {
         window.Telegram.WebApp.BackButton.show()
@@ -168,7 +168,7 @@ export const DepositMiner = () => {
     }, [])
 
     const DepositNFT = (nft_item_address: ItemMetadata[], amount: number) => {
-        let parsed_amount = (0.12 * 10**9)
+        let parsed_amount = (0.12 * 10 ** 9)
         let myTransaction: SendTransactionRequest = {
             validUntil: Math.floor(Date.now() / 1000) + 600,
             messages: []
@@ -200,8 +200,33 @@ export const DepositMiner = () => {
         if (refBlock.current) {
             setFontSize(getInputSize(amount, refBlock.current));
         }
-        
+
     }, [refBlock.current, amount]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value.replace(/\s/g, '');
+
+        if (value.length <= 4) {
+            if (value == '0' && amount != '0') {
+                setAmount(value);
+            } else if (value != '0' && !value.startsWith('0')) {
+                const formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+                setAmount(formattedValue);
+            }
+        }
+    };
+
+    const handleChangeError = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value.replace(/\s/g, '');
+
+        if (value.length <= 4) {
+            if (value == '0' && amount != '0') {
+                setAmount(value);
+            } else if (value != '0' && !value.startsWith('0')) {
+                setAmount(value);
+            }
+        }
+    };
 
     return (
         <>
@@ -213,32 +238,32 @@ export const DepositMiner = () => {
                     </NameContainer>
                     <AmountContainer>
                         <InputContainer ref={refBlock}>
-                            { Number(amount) > miner_info.nfts.length || Number(amount) > 4 ? 
-                                <> 
-                                <Input
-                                    value={amount}
-                                    style={{ width: `${fontSize.width}px`, color: "#ef5b5b" }}
-                                    onChange={(e) => setAmount(e.target.value)}
-                                    inputMode="numeric" 
-                                    pattern="[0-9]*"
-                                    placeholder="0"
-                                    anim="shake 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) both"    
-                                ></Input>
-                                <WithdrawNameTokenError>NFT</WithdrawNameTokenError>
-                                </> 
-                            : 
-                                <> 
-                                <Input
-                                    value={amount}
-                                    style={{ width: `${fontSize.width}px` }}
-                                    onChange={(e) => setAmount(e.target.value)}
-                                    inputMode="numeric" 
-                                    pattern="[0-9]*"
-                                    placeholder="0"
-                                    anim=""
-                                ></Input>
-                                <WithdrawNameToken>NFT</WithdrawNameToken>
-                                </> 
+                            {Number(amount) > miner_info.nfts.length || Number(amount) > 4 ?
+                                <>
+                                    <Input
+                                        value={amount}
+                                        style={{ width: `${fontSize.width}px`, color: "#ef5b5b" }}
+                                        onChange={handleChangeError}
+                                        inputMode="numeric"
+                                        pattern="[0-9]*"
+                                        placeholder="0"
+                                        anim="shake 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) both"
+                                    ></Input>
+                                    <WithdrawNameTokenError>NFT</WithdrawNameTokenError>
+                                </>
+                                :
+                                <>
+                                    <Input
+                                        value={amount}
+                                        style={{ width: `${fontSize.width}px` }}
+                                        onChange={handleChange}
+                                        inputMode="numeric"
+                                        pattern="[0-9]*"
+                                        placeholder="0"
+                                        anim=""
+                                    ></Input>
+                                    <WithdrawNameToken>NFT</WithdrawNameToken>
+                                </>
                             }
                         </InputContainer>
                         <AmountOnBalance>{miner_info.nfts.length} NFT on balance</AmountOnBalance>
@@ -247,11 +272,11 @@ export const DepositMiner = () => {
             </Container>
             <ButtonContainer>
                 {
-                    (amount != "" && Number(amount) != 0) ? 
+                    (amount != "" && Number(amount) != 0) ?
                         Number(amount) <= 4 ?
-                            Number(amount) <= miner_info.nfts.length ? <Links> <ActiveConfirm onClick={() => DepositNftAction(miner_info.nfts, Number(amount))}>CONTINUE</ActiveConfirm> </Links> : <NonActiveConfirm>Not enough funds</NonActiveConfirm> 
-                        : <NonActiveConfirm>No more than 4 NFTs per attempt</NonActiveConfirm>
-                    : 
+                            Number(amount) <= miner_info.nfts.length ? <Links> <ActiveConfirm onClick={() => DepositNftAction(miner_info.nfts, Number(amount))}>CONTINUE</ActiveConfirm> </Links> : <NonActiveConfirm>Not enough funds</NonActiveConfirm>
+                            : <NonActiveConfirm>No more than 4 NFTs per attempt</NonActiveConfirm>
+                        :
                         <NonActiveConfirm>CONTINUE</NonActiveConfirm>
                 }
             </ButtonContainer>
